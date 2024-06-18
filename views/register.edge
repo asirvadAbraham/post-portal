@@ -1,0 +1,64 @@
+@layout('layouts.app')
+
+@section('content')
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>Create Account</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
+      @if(userRegistrationErrors?.length)
+      <ul class="list-group">
+        @each(item in userRegistrationErrors)
+        <li class="list-group-item text-danger">{{item}}</li>
+        @endeach
+      </ul>
+
+      @endif
+
+      <form action="/users/register" method="POST">
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Username</label>
+            <input type="text" placeholder="Username" name="username" value="{{data?.username || ''}}" class="form-control">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Email</label>
+            <input placeholder="Email" type="email" name="email" value="{{data?.email || ''}}" class="form-control">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="password" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group text-center">
+          <button class="btn btn-primary">Register</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+@endsection
